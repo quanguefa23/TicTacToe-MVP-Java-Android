@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TicTacToeMVP</string>
+    <string name="instruction_reset_game">Click button to reset game</string>
+    <string name="zero_won">ZERO won</string>
+    <string name="cross_won">CROSS won</string>
+    <string name="draw">Draw</string>
+</resources>
