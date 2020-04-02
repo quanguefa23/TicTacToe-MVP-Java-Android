@@ -5,7 +5,7 @@ import android.view.View;
 public interface MainMvpPresenter {
     void onAttach(MainMvpView mainMvpView);
 
-    void onClickButton(View view);
+    void onClickButtonCell(View view);
 
     void resetGame();
 }

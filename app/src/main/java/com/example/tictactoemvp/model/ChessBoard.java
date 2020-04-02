@@ -6,6 +6,7 @@ public class ChessBoard {
     public static final int CROSS_IN_BOARD = 2;
 
     int[][] matrix;
+    int mWinner;
 
     public ChessBoard() {
         matrix = new int[3][3];
@@ -16,6 +17,8 @@ public class ChessBoard {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 matrix[i][j] = NONE_IN_BOARD;
+
+        mWinner = NONE_IN_BOARD;
     }
 
     private int getRow(int id) {
@@ -41,21 +44,29 @@ public class ChessBoard {
     public int checkWinner() {
         for (int i = 0; i < 3; i++) {
             int resRaw = checkWinByRaw(i);
-            if (resRaw != NONE_IN_BOARD)
+            if (resRaw != NONE_IN_BOARD) {
+                mWinner = resRaw;
                 return resRaw;
+            }
 
             int resCol = checkWinByCol(i);
-            if (resCol != NONE_IN_BOARD)
+            if (resCol != NONE_IN_BOARD) {
+                mWinner = resCol;
                 return resCol;
+            }
         }
 
         int resCross1 = checkByCross1();
-        if (resCross1 != NONE_IN_BOARD)
+        if (resCross1 != NONE_IN_BOARD) {
+            mWinner = resCross1;
             return resCross1;
+        }
 
         int resCross2 = checkByCross2();
-        if (resCross2 != NONE_IN_BOARD)
+        if (resCross2 != NONE_IN_BOARD) {
+            mWinner = resCross2;
             return resCross2;
+        }
 
         return NONE_IN_BOARD;
     }
@@ -92,5 +103,9 @@ public class ChessBoard {
             }
         }
         return true;
+    }
+
+    public boolean hasWinner() {
+        return mWinner != NONE_IN_BOARD;
     }
 }
