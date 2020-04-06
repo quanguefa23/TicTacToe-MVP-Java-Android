@@ -55,8 +55,17 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
     }
 
     public void onClickButtonCell(View view) {
+        String fullId = getStringId(view);
         //delegate for presenter
-        mPresenter.onClickButtonCell(view);
+        mPresenter.onClickButtonCell(fullId);
+    }
+
+    //get id of View in String format (ex: "button_1")
+    private String getStringId(View view) {
+        if (view.getId() == View.NO_ID)
+            return "no-id";
+        String[] id = view.getResources().getResourceName(view.getId()).split("/");
+        return id[1];
     }
 
     @Override

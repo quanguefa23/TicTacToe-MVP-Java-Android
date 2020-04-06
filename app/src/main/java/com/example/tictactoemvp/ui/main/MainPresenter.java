@@ -1,7 +1,5 @@
 package com.example.tictactoemvp.ui.main;
 
-import android.view.View;
-
 import com.example.tictactoemvp.model.ChessBoard;
 
 public class MainPresenter implements MainMvpPresenter{
@@ -16,17 +14,11 @@ public class MainPresenter implements MainMvpPresenter{
     }
 
     @Override
-    public void onAttach(MainMvpView mainMvpView) {
-        mView = mainMvpView;
-    }
-
-    @Override
-    public void onClickButtonCell(View view) {
+    public void onClickButtonCell(String fullId) {
         //return if game has a winner
         if (mChessBoard.hasWinner())
             return;
 
-        String fullId = getStringId(view);
         int id = Integer.parseInt(fullId.split("_")[1]);
 
         //return if this cell is filled
@@ -61,13 +53,5 @@ public class MainPresenter implements MainMvpPresenter{
     public void resetGame() {
         mTurn = ChessBoard.CROSS_IN_BOARD;
         mChessBoard.resetBoard();
-    }
-
-    //get id of View in String format (ex: "button_1")
-    private String getStringId(View view) {
-        if (view.getId() == View.NO_ID)
-            return "no-id";
-        String[] id = view.getResources().getResourceName(view.getId()).split("/");
-        return id[1];
     }
 }
