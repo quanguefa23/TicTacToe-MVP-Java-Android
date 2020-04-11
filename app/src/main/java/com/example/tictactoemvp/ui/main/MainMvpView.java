@@ -6,7 +6,7 @@ public interface MainMvpView {
 
     void setVisibleZeroAtPosition(int id);
 
-    void notifyWinner(int zeroInBoard);
+    void notifyWinner(int winner);
 
     void notifyDraw();
 }

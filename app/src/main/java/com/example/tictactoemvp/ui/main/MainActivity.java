@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.tictactoemvp.R;
 import com.example.tictactoemvp.model.ChessBoard;
 
@@ -17,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
     ArrayList<ImageView> mListZeroIV;
     ArrayList<ImageView> mListCrossIV;
     TextView mNotificationTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +24,17 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
         getWindow().setBackgroundDrawable(null);
 
         mPresenter = new MainPresenter(this);
+        mPresenter.start();
         mNotificationTV = findViewById(R.id.notification);
 
         //find all imageViews which represents Zero or Cross, attach them to ArrayList
         attachViewToMyArrayList();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.stop();
+        super.onDestroy();
     }
 
     private void attachViewToMyArrayList() {

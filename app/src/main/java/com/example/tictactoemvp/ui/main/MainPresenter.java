@@ -9,8 +9,15 @@ public class MainPresenter implements MainMvpPresenter{
 
     public MainPresenter(MainMvpView mainMvpView) {
         mView = mainMvpView;
+    }
+
+    public void start() {
         mTurn = ChessBoard.CROSS_IN_BOARD;
         mChessBoard = new ChessBoard();
+    }
+
+    public void stop() {
+        mView = null;
     }
 
     @Override
@@ -23,6 +30,10 @@ public class MainPresenter implements MainMvpPresenter{
 
         //return if this cell is filled
         if (mChessBoard.isFill(id))
+            return;
+
+        //check mView is null
+        if (mView == null)
             return;
 
         //trigger view and change model
